@@ -1,0 +1,40 @@
+# Copy to AI Chat
+
+Four local Raycast commands:
+
+| Open website | Open with clipboard | Destination |
+| --- | --- | --- |
+| `cla` | `cla c` | Claude |
+| `gem` | `gem c` | Gemini |
+| `gpt` | `gpt c` | ChatGPT |
+| `grok` | `grok c` | Grok |
+
+Commands open the website by default without reading your clipboard. Add the optional `c` argument to fill the prompt with your clipboard’s plain text. Nothing is submitted automatically: review or edit the text, then send it yourself. With `c`, empty, whitespace-only, and non-text clipboards just open the site. Existing drafts are kept.
+
+## Install locally
+
+Requires macOS, Google Chrome, Raycast, Node.js, and Xcode Command Line Tools for the small native helper.
+
+```sh
+npm install
+npm run dev
+```
+
+Raycast imports the four commands. Once imported, stop the development watcher with Ctrl-C; the local commands remain installed. Search Raycast for `cla`, `gem`, `gpt`, or `grok`. If another result wins, assign that same alias to the command in Raycast Settings → Extensions.
+
+Raycast needs Accessibility permission in System Settings → Privacy & Security → Accessibility. Sign into each AI website in Chrome normally.
+
+## How it works
+
+Each command opens the regular new-chat URL in Chrome. Only when the optional argument is `c` does the Raycast Clipboard API read plain text and start the filling helper. A Swift helper waits for the expected prompt field and enters the text using macOS accessibility. If the editor does not support direct accessibility text entry, Raycast pastes the text into the identified, focused field. Clipboard text is never included in a URL, process argument, log, or file.
+
+An existing draft is preserved unless it already matches the clipboard text. Login screens, unavailable Accessibility permission, and slow loading fall back to a message with manual instructions. The field labels currently match the English website interfaces.
+
+## Validate
+
+```sh
+npm run build
+npm run typecheck
+```
+
+`native/WaitForComposer.swift` is built for the current Mac architecture. Rebuild when moving to another Mac architecture.

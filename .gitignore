@@ -1,0 +1,6 @@
+node_modules/
+dist/
+assets/wait-for-composer
+*.tsbuildinfo
+.DS_Store
+verification-*.png

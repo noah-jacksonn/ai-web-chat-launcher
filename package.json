@@ -1,0 +1,111 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "copy-to-ai-chat",
+  "title": "Copy to AI Chat",
+  "description": "Open Claude, Gemini, ChatGPT, or Grok in Chrome. Add c to fill the prompt from your clipboard.",
+  "icon": "extension-icon.png",
+  "author": "noahjackson",
+  "license": "MIT",
+  "platforms": [
+    "macOS"
+  ],
+  "categories": [
+    "Productivity"
+  ],
+  "commands": [
+    {
+      "name": "cla",
+      "title": "cla",
+      "subtitle": "Open Claude",
+      "description": "Open Claude in Chrome. Add c to fill the prompt with clipboard text without sending.",
+      "mode": "no-view",
+      "keywords": [
+        "claude",
+        "clipboard"
+      ],
+      "icon": "claude.png",
+      "arguments": [
+        {
+          "name": "mode",
+          "type": "text",
+          "placeholder": "c = clipboard",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "gem",
+      "title": "gem",
+      "subtitle": "Open Gemini",
+      "description": "Open Gemini in Chrome. Add c to fill the prompt with clipboard text without sending.",
+      "mode": "no-view",
+      "keywords": [
+        "gemini",
+        "clipboard"
+      ],
+      "icon": "gemini.png",
+      "arguments": [
+        {
+          "name": "mode",
+          "type": "text",
+          "placeholder": "c = clipboard",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "gpt",
+      "title": "gpt",
+      "subtitle": "Open ChatGPT",
+      "description": "Open ChatGPT in Chrome. Add c to fill the prompt with clipboard text without sending.",
+      "mode": "no-view",
+      "keywords": [
+        "chatgpt",
+        "clipboard"
+      ],
+      "icon": "chatgpt.png",
+      "arguments": [
+        {
+          "name": "mode",
+          "type": "text",
+          "placeholder": "c = clipboard",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "grok",
+      "title": "grok",
+      "subtitle": "Open Grok",
+      "description": "Open Grok in Chrome. Add c to fill the prompt with clipboard text without sending.",
+      "mode": "no-view",
+      "keywords": [
+        "grok",
+        "clipboard"
+      ],
+      "icon": "grok.png",
+      "arguments": [
+        {
+          "name": "mode",
+          "type": "text",
+          "placeholder": "c = clipboard",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "scripts": {
+    "build:native": "xcrun swiftc -O native/WaitForComposer.swift -o assets/wait-for-composer",
+    "build": "npm run build:native && ray build -e dist",
+    "dev": "npm run build:native && ray develop",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@raycast/api": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "typescript": "^5.9.0"
+  }
+}
