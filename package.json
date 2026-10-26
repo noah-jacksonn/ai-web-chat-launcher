@@ -17,81 +17,93 @@
       "name": "cla",
       "title": "cla",
       "subtitle": "Open Claude",
-      "description": "Open Claude in Chrome. Add c to fill the prompt with clipboard text without sending.",
+      "description": "Open Claude in Chrome without reading the clipboard.",
+      "mode": "no-view",
+      "keywords": [
+        "claude"
+      ],
+      "icon": "claude.png"
+    },
+    {
+      "name": "cla-clipboard",
+      "title": "cla c",
+      "subtitle": "Open Claude with Clipboard",
+      "description": "Open Claude in Chrome and fill the prompt with clipboard text without sending.",
       "mode": "no-view",
       "keywords": [
         "claude",
         "clipboard"
       ],
-      "icon": "claude.png",
-      "arguments": [
-        {
-          "name": "mode",
-          "type": "text",
-          "placeholder": "c = clipboard",
-          "required": false
-        }
-      ]
+      "icon": "claude.png"
     },
     {
       "name": "gem",
       "title": "gem",
       "subtitle": "Open Gemini",
-      "description": "Open Gemini in Chrome. Add c to fill the prompt with clipboard text without sending.",
+      "description": "Open Gemini in Chrome without reading the clipboard.",
+      "mode": "no-view",
+      "keywords": [
+        "gemini"
+      ],
+      "icon": "gemini.png"
+    },
+    {
+      "name": "gem-clipboard",
+      "title": "gem c",
+      "subtitle": "Open Gemini with Clipboard",
+      "description": "Open Gemini in Chrome and fill the prompt with clipboard text without sending.",
       "mode": "no-view",
       "keywords": [
         "gemini",
         "clipboard"
       ],
-      "icon": "gemini.png",
-      "arguments": [
-        {
-          "name": "mode",
-          "type": "text",
-          "placeholder": "c = clipboard",
-          "required": false
-        }
-      ]
+      "icon": "gemini.png"
     },
     {
       "name": "gpt",
       "title": "gpt",
       "subtitle": "Open ChatGPT",
-      "description": "Open ChatGPT in Chrome. Add c to fill the prompt with clipboard text without sending.",
+      "description": "Open ChatGPT in Chrome without reading the clipboard.",
+      "mode": "no-view",
+      "keywords": [
+        "chatgpt"
+      ],
+      "icon": "chatgpt.png"
+    },
+    {
+      "name": "gpt-clipboard",
+      "title": "gpt c",
+      "subtitle": "Open ChatGPT with Clipboard",
+      "description": "Open ChatGPT in Chrome and fill the prompt with clipboard text without sending.",
       "mode": "no-view",
       "keywords": [
         "chatgpt",
         "clipboard"
       ],
-      "icon": "chatgpt.png",
-      "arguments": [
-        {
-          "name": "mode",
-          "type": "text",
-          "placeholder": "c = clipboard",
-          "required": false
-        }
-      ]
+      "icon": "chatgpt.png"
     },
     {
       "name": "grok",
       "title": "grok",
       "subtitle": "Open Grok",
-      "description": "Open Grok in Chrome. Add c to fill the prompt with clipboard text without sending.",
+      "description": "Open Grok in Chrome without reading the clipboard.",
+      "mode": "no-view",
+      "keywords": [
+        "grok"
+      ],
+      "icon": "grok.png"
+    },
+    {
+      "name": "grok-clipboard",
+      "title": "grok c",
+      "subtitle": "Open Grok with Clipboard",
+      "description": "Open Grok in Chrome and fill the prompt with clipboard text without sending.",
       "mode": "no-view",
       "keywords": [
         "grok",
         "clipboard"
       ],
-      "icon": "grok.png",
-      "arguments": [
-        {
-          "name": "mode",
-          "type": "text",
-          "placeholder": "c = clipboard",
-          "required": false
-        }
-      ]
+      "icon": "grok.png"
     }
   ],
   "scripts": {
