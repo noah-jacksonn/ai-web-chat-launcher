@@ -33,19 +33,31 @@ declare namespace Preferences {
 
 declare namespace Arguments {
   /** Arguments passed to the `cla` command */
-  export type Cla = {}
+  export type Cla = {
+  /** Query (optional) */
+  "query": string
+}
   /** Arguments passed to the `cla-clipboard` command */
   export type ClaClipboard = {}
   /** Arguments passed to the `gem` command */
-  export type Gem = {}
+  export type Gem = {
+  /** Query (optional) */
+  "query": string
+}
   /** Arguments passed to the `gem-clipboard` command */
   export type GemClipboard = {}
   /** Arguments passed to the `gpt` command */
-  export type Gpt = {}
+  export type Gpt = {
+  /** Query (optional) */
+  "query": string
+}
   /** Arguments passed to the `gpt-clipboard` command */
   export type GptClipboard = {}
   /** Arguments passed to the `grok` command */
-  export type Grok = {}
+  export type Grok = {
+  /** Query (optional) */
+  "query": string
+}
   /** Arguments passed to the `grok-clipboard` command */
   export type GrokClipboard = {}
 }

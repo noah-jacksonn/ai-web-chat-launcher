@@ -1,5 +1,5 @@
 import { openChat } from "./open-chat";
 
 export default async function Command() {
-  await openChat("chatgpt", true);
+  await openChat("chatgpt", { useClipboard: true });
 }

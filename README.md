@@ -1,40 +1,118 @@
 # Copy to AI Chat
 
-Local Raycast commands:
+<img src="assets/extension-icon.png" alt="Copy to AI Chat" width="96" height="96" />
 
-| Open website | Open with clipboard | Destination |
+Open Claude, Gemini, ChatGPT, or Grok in Google Chrome from Raycast, with a typed
+query or the text on your clipboard. Review your prompt in the chat box before
+sending it. No API key is needed.
+
+## Commands and shortcuts
+
+| Destination | Open or type a query | Fill from clipboard |
 | --- | --- | --- |
-| `cla` | `cla c` | Claude |
-| `gem` | `gem c` | Gemini |
-| `gpt` | `gpt c` | ChatGPT |
-| `grok` | `grok c` | Grok |
+| Claude | `cla` — Open Claude | `cla c` — Open Claude with Clipboard |
+| Gemini | `gem` — Open Gemini | `gem c` — Open Gemini with Clipboard |
+| ChatGPT | `gpt` — Open ChatGPT | `gpt c` — Open ChatGPT with Clipboard |
+| Grok | `grok` — Open Grok | `grok c` — Open Grok with Clipboard |
 
-Commands open the website by default without reading your clipboard. Search for the command ending in `c` (for example, type `cla c`) to fill the prompt with your clipboard’s plain text. These are separate commands, so no argument field or Tab key is needed. Nothing is submitted automatically: review or edit the text, then send it yourself. With `c`, empty, whitespace-only, and non-text clipboards just open the site. Existing drafts are kept.
+For predictable shortcuts, assign these aliases to their corresponding commands
+in **Raycast Settings → Extensions**. Aliases are personal Raycast settings and
+are not installed automatically. You can also search for the full command name.
 
-## Install locally
+**Type a query:** search for `cla`, press **Tab**, type your question, then press
+**Enter**. Claude opens with the question in its chat box. The same flow works
+with `gem`, `gpt`, and `grok`.
 
-Requires macOS, Google Chrome, Raycast, Node.js, and Xcode Command Line Tools for the small native helper.
+**Use your clipboard:** copy some text and run `cla c` (or the equivalent for
+another destination). Clipboard commands are separate commands and do not need
+an argument or Tab.
+
+**Just open the site:** run an open command without entering a query. The
+clipboard is used as the prompt only by commands named “with Clipboard.” Blank queries and
+empty, whitespace-only, or non-text clipboards simply open the site.
+
+The extension never submits a message automatically. A different existing draft
+is kept; the extension shows a message instead of replacing it.
+
+## Requirements
+
+- macOS with Raycast and **Google Chrome** installed. Safari, Firefox, and other
+  browsers are not supported by this version.
+- Sign in to the AI services you use in Chrome. Each service's own account,
+  subscription, and usage limits apply.
+- Allow **Raycast** in **System Settings → Privacy & Security → Accessibility**.
+  This lets the helper identify and fill the correct chat box.
+- Use the English website interface. Composer labels in other languages are
+  not currently recognized.
+
+The native helper is bundled for both Apple Silicon and Intel Macs. You do not
+need Xcode or a separate helper installation to use the extension.
+
+## Troubleshooting
+
+Keep Chrome in front while the chat loads. If you switch apps, the extension
+stops rather than entering text into a different app. Login screens, slow
+loading, and website changes can prevent automatic filling. Finish signing in,
+wait for the chat box to appear, then run the command again. If you see an
+existing-draft message, finish that draft or start an empty chat before retrying.
+
+The extension opens each service's regular new-chat URL. It follows Chrome's
+normal profile/window behavior and does not choose an account or profile for you.
+
+## Privacy
+
+This extension has no analytics, AI API integration, or server of its own.
+Prompt text is passed to the local helper through standard input, not in URLs,
+process arguments, log messages, or files. The helper only targets the expected
+composer on the expected HTTPS host and path.
+
+When a chat editor requires paste instead of direct text entry, the helper
+temporarily uses the system clipboard, rechecks the focused composer, and invokes
+Chrome's Paste menu action. Temporary text is marked transient/concealed for
+clipboard managers and excluded from Universal Clipboard. The helper restores
+the previous contents afterward unless you have copied something newer in the
+meantime. Clipboard history apps must honor those standard markers; forcibly
+killing the helper can prevent restoration.
+
+Text placed in a website's editor is subject to that service's normal handling
+of drafts and account data, even before you press Send. The extension does not
+bypass any service's sign-in or subscription requirements.
+
+## Install from source
+
+Requires Node.js and npm, in addition to the requirements above:
 
 ```sh
-npm install
+git clone https://github.com/noah-jacksonn/copy-to-ai-chat.git
+cd copy-to-ai-chat
+npm ci
 npm run dev
 ```
 
-Raycast imports the eight commands. Once imported, stop the development watcher with Ctrl-C; the local commands remain installed. Search Raycast for `cla`, `gem`, `gpt`, or `grok`, with ` c` for the clipboard commands. Set the exact aliases `cla c`, `gem c`, `gpt c`, and `grok c` on their corresponding commands in Raycast Settings → Extensions so search history cannot prioritize a different command. Aliases are local Raycast settings and do not travel with this repository.
+Raycast imports the commands. Stop the watcher with Ctrl-C when finished; the
+local commands remain installed.
 
-Raycast needs Accessibility permission in System Settings → Privacy & Security → Accessibility. Sign into each AI website in Chrome normally.
-
-## How it works
-
-Each command opens the regular new-chat URL in Chrome. The commands ending in `c` read plain text through the Raycast Clipboard API and start the filling helper. A Swift helper waits for the expected prompt field and enters the text using macOS accessibility. If the editor does not support direct accessibility text entry, Raycast pastes the text into the identified, focused field. Clipboard text is never included in a URL, process argument, log, or file.
-
-An existing draft is preserved unless it already matches the clipboard text. Login screens, unavailable Accessibility permission, and slow loading fall back to a message with manual instructions. The field labels currently match the English website interfaces.
-
-## Validate
+## Development
 
 ```sh
-npm run build
 npm run typecheck
+npm test
+npm run lint
+npm run verify:native
+npm run build
 ```
 
-`native/WaitForComposer.swift` is built for the current Mac architecture. Rebuild when moving to another Mac architecture.
+If you change the Swift source, install Xcode Command Line Tools and run
+`npm run build:native` before testing or committing. The source and universal
+binary build process are documented in [native/README.md](native/README.md).
+The bundled executable should be committed together with its source changes.
+
+To submit an update to the Raycast Store, run `npm run publish`. Raycast's CLI
+creates or updates a pull request for review; submission does not make an
+extension immediately available in the Store.
+
+## Credits and license
+
+Code is released under the [MIT License](LICENSE). Service names and logos
+belong to their respective owners; this is an independent extension and is not
+affiliated with those providers. See [asset sources](ASSETS.md).
